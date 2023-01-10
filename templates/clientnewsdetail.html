@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Page</title>
+</head>
+<body>
+    <h1>Home Page</h1>
+
+    <ul>
+        <li><a href="/">Home</a></li>
+        <li><a href="{% url 'everestapp:clientabout' %}">About</a></li>
+        <li><a href="{% url 'everestapp:clientservice' %}">Services</a></li>
+        <li><a href="{% url 'everestapp:clientcontact' %}">Contact</a></li>
+    </ul>
+    <ul>
+        <li><a href="{% url 'everestapp:clientnewslist' %}">All News</a></li>
+    </ul>
+    {{newsdetail.title}}
+    <p><a href="{% url 'everestapp:clientnewsupdate' newsdetail.id %}">Update</a></p>
+    <p><a href="{% url 'everestapp:clientnewsdelete' newsdetail.id %}">Delete</a></p>
+    <p style="text-align: center; color: blue;">{{newsdetail.content|safe}}</p>
+
+    <img src="{{newsdetail.image.url}}" style="display: block; margin-left: auto; margin-right: auto;max-width: 200px; object-fit: contain;" alt="">
+    <br>
+    <br>
+    {% if comments %}
+    Prev comments:
+    <ul>
+        {% for com in comments %}
+        <li>{{com.comment}}</li>
+        {% endfor %}
+    </ul>
+    {% endif %}
+    <br>  
+    Your Comment:
+    <form method="post" action="{% url 'everestapp:clientnewscommentcreate' newsdetail.id %}">
+        {% csrf_token %}
+        <div class="row">
+            <div class="col-lg-6">
+                <p>{{form.commentername}}</p>
+             </div>
+            <div class="col-lg-6">
+                <p>{{form.email}}</p>
+            </div>
+            <div class="col-lg-12">
+                <p>{{form.comment}}</p>
+            </div>
+            <div class="col-lg-12">
+                <button type="submit">SUBMIT</button>
+            </div>
+        </div>
+    </form>
+</body>
+</html>

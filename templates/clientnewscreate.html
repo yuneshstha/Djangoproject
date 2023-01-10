@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>News Create</title>
+</head>
+<body>
+    <form method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        <!-- {{form.as_p}} -->
+        {{form.non_field_errors}}
+        News Title:
+        {{form.title}}
+        <br>
+        <br>
+        Content:
+        <div style="width: 50%;">
+            {{form.content}}
+        </div>
+        <br>
+        <br>
+        Category:
+        {{form.category}}
+        <br>
+        <br>
+        Image:
+        {{form.image}}
+        <br>
+        <br>
+        Author:
+        {{form.author}}
+        <br>
+        <br>
+        Views:
+        {{form.viewed}}
+        <br>
+        <br>
+        <button type="submit">POST NEWS</button>
+    </form>
+    <a href="{% url 'everestapp:adminlogout' %}">LOGOUT ADMIN</a>
+</body>
+</html>

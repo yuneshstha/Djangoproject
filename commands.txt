@@ -1,0 +1,29 @@
+Create a folder where the project should be created
+open folder in CMD
+
+#### run command #### 
+pip install virtualenv
+virtualenv .
+scripts\activate
+pip install django pillow
+django-admin startproject everestproject
+# goto everestproject location
+python manage.py startapp everestapp
+python manage.py runserver
+# goto browser 127.0.0.1:8000
+python manage.py migrate
+python manage.py createsuperuser
+#127.0.0.1:8000/admin
+
+#for requirements.txt
+pip freeze > requirements.txt
+
+#### Setting up the project #####
+#editing settings.py
+- adding app name to installed app
+- 'DIRS': [BASE_DIR / "templates"],
+- TIME_ZONE = 'Asia/Kathmandu'
+- STATIC_URL = 'static/'
+STATICFILES_DIRS = [BASE_DIR / "static"]
+MEDIA_URL = "/dmedia/"
+MEDIA_ROOT = BASE_DIR / "dmedia"
